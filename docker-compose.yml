@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  java:
+    env_file: ./env/api.env
+    build: .
+    container_name: java_dev_api-ia
+    volumes:
+      - .:/workspace
+    tty: true
