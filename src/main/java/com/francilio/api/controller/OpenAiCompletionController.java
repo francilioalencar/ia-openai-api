@@ -6,32 +6,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.francilio.api.service.OpenAiCompletionService;
 import com.francilio.api.service.OpenIaService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/openia-chat")
+@RequestMapping("/completion")
 
-
-
-public class OpenIaController {
+public class OpenAiCompletionController {
 
     
-    private OpenIaService openIaService;
+    private OpenAiCompletionService openAiCompletionService;
 
-    public OpenIaController(OpenIaService openIaService){
-        this.openIaService = openIaService;
+    public OpenAiCompletionController( OpenAiCompletionService openAiCompletionService){
+        this.openAiCompletionService = openAiCompletionService;
     }
 
 
-    @Operation(summary =  "Api", description = """
-        Utilizado documentação: https://platform.openai.com/docs/libraries#java\n
-        API:Java Sashir Estela ( https://github.com/sashirestela/simple-openai )\n
+    @Operation(summary = "chat-completion", description = """
+        Utilizado documentação Create chat completion em: https://platform.openai.com/docs/api-reference/chat/create\n
+        Requisicao:POST\n
+        Endpoint:  https://api.openai.com/v1/chat/completions\n
+        REST Client: OpenFeign - Spring Cloud Routing
         """)
-
-
     @GetMapping("/cronograma/{descricao}")
 
     public ResponseEntity<String> elaborarCronograma(@PathVariable String descricao){
@@ -49,7 +48,7 @@ public class OpenIaController {
                     ] 
                 """;
 
-        return ResponseEntity.ok(this.openIaService.gerarConteudoComChatOpenIa(promptSystem, descricao));
+        return ResponseEntity.ok(this.openAiCompletionService.openAiChatCompletionService(promptSystem, descricao));
     }
 
 

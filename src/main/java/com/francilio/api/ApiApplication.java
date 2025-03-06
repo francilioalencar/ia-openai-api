@@ -7,9 +7,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.servers.Server;
 
+
 @SpringBootApplication
-@EnableFeignClients
 @OpenAPIDefinition(servers ={ @Server(url="/", description= "")})
+@EnableFeignClients
 public class ApiApplication {
 
 	public static void main(String[] args) {

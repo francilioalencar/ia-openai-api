@@ -1,7 +1,7 @@
 {
     "name": "Java-17-Container",
     "dockerComposeFile": "../docker-compose.yml",
-    "service": "java",
+    "service": "api",
     "workspaceFolder": "/workspace",
     "extensions": [
       "vscjava.vscode-java-pack"
