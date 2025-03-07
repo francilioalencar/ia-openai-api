@@ -33,7 +33,7 @@ Este projeto implementa uma API que realiza a integração com a OpenAI, utiliza
 ### Pré-requisitos
 
 - **Java 17**: Ambiente de desenvolvimento.
-- **Maven** ou **Gradle**: Para gerenciar as dependências e rodar o projeto.
+- **Maven**: Para gerenciar as dependências e rodar o projeto.
 - **Docker**: Usado para construir e rodar os containers.
 - **Docker Compose**: Para orquestrar os containers.
 
