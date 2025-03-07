@@ -55,6 +55,12 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
+		<dependency>
+		<groupId>com.knuddels</groupId>
+			<artifactId>jtokkit</artifactId>
+			<version>0.5.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

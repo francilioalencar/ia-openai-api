@@ -1,6 +1,5 @@
 package com.francilio.api.model;
 
-import java.util.List;
 
 public class Choice {
     private int index;

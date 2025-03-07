@@ -14,10 +14,25 @@ import io.github.sashirestela.openai.domain.chat.ChatRequest;
 @Service
 public class OpenIaService {
     
+    @Value("${spring.ai.openai.api.model}")
+    private String modelChat;
+
     @Value("${spring.ai.openai.api.key}")
     private String apiKey;
 
+    private TokenService tokenService;
+
+    public OpenIaService(TokenService tokenService){
+        this.tokenService = tokenService;
+
+    }
+
     public String gerarConteudoComChatOpenIa(String promptSystem, String promptUser){
+
+        if(this.tokenService.contarTokens(promptUser)  > 128000){
+
+            throw new IllegalArgumentException("A quantidade de Tokens ultrapassa a quantiadade de 128K ");
+        }
 
         StringBuilder chatResponsBuilder = new StringBuilder();
         var openAI = SimpleOpenAI.builder()
@@ -25,7 +40,7 @@ public class OpenIaService {
             .build();
 
         var chatRequest = ChatRequest.builder()
-            .model("gpt-4-turbo")
+            .model(modelChat)
             .message(SystemMessage.of(promptSystem))
             .message(UserMessage.of(promptUser))
             .temperature(1.0)
