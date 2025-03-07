@@ -36,3 +36,5 @@ build/
 #Dockerfile
 env/
 #.devcontainer/
+docker-compose-copy.yml
+Dockerfile-copy

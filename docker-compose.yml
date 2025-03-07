@@ -1,9 +1,10 @@
 
 services:
-  api:
-    build: .
+  api-1:
+    build:
+      context: .
     env_file: ./env/api.env
-    container_name: java_dev_api
-    volumes:
-      - .:/workspace
-    tty: true
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    
