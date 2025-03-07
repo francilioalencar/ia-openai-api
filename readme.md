@@ -16,14 +16,12 @@ Este projeto implementa uma API que realiza a integração com a OpenAI, utiliza
 ### `/completion`
 
 - **Método**: `GET`
-- **Descrição**: Realiza uma requisição à API da OpenAI (endpoint: `https://api.openai.com/v1/chat/completions`) utilizando o **OpenFeign**.
-- **Parâmetros**: O corpo da requisição deve conter o prompt para interação com o modelo GPT-4 Turbo.
+- **Descrição**: Realiza uma requisição POST à API da OpenAI (endpoint: `https://api.openai.com/v1/chat/completions`) utilizando o **OpenFeign**.
   
 ### `/openai-chat`
 
-- **Método**: `POST`
+- **Método**: `GET`
 - **Descrição**: Utiliza a biblioteca **simple-openai** para realizar as requisições à OpenAI.
-- **Parâmetros**: O corpo da requisição deve incluir o prompt para interagir com o modelo GPT-4 Turbo.
 
 ### Contagem de Tokens
 
