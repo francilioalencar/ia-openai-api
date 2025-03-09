@@ -1,10 +1,12 @@
 # API para Integração com OpenAI
 
-Este projeto implementa uma API que realiza a integração com a OpenAI, utilizando o modelo GPT-4 Turbo. A API oferece endpoints para enviar requisições à OpenAI e obter respostas baseadas em prompts fornecidos pelo usuário.
+Este projeto implementa uma API que realiza a integração com a OpenAI, utilizando as APIs indicadas no DOC da OpenAi e Spring AI com Chat Client API. 
+A API oferece endpoints para enviar requisições à OpenAI e obter respostas baseadas em prompts fornecidos pelo usuário. Não foi implementado segurança, o objetivo aqui é simplismente realizar as requisições a OpenAi seguindo a documentação em: https://platform.openai.com/docs/overview e https://spring.io/projects/spring-ai
 
 ## Tecnologias Utilizadas
 
 - **Java 17**: Ambiente de desenvolvimento.
+- **Spring AI**: API Spring para requisições aos modelos de IAs, (aqui foi utilizado spring-ai-openai).
 - **OpenFeign**: Para realizar requisições HTTP à API da OpenAI.
 - **simple-openai**: Biblioteca por Sashir Estela para interagir com a OpenAI.
 - **JTokkit**: Java Tokenizer Kit para contagem de tokens.
@@ -13,15 +15,31 @@ Este projeto implementa uma API que realiza a integração com a OpenAI, utiliza
 
 ## Endpoints
 
-### `/completion`
+### `/requestOpenFeign`
 
-- **Método**: `GET`
+- **Método**: `POST`
 - **Descrição**: Realiza uma requisição POST à API da OpenAI (endpoint: `https://api.openai.com/v1/chat/completions`) utilizando o **OpenFeign**.
   
-### `/openai-chat`
+### `/sashirestelaApi`
 
-- **Método**: `GET`
+- **Método**: `POST`
 - **Descrição**: Utiliza a biblioteca **simple-openai** para realizar as requisições à OpenAI.
+  
+### `/chatClientOpenAi`
+
+- **Método**: `POST`
+- **Descrição**: Utiliza a biblioteca **Spring AI (spring-ai-openai)** para realizar as requisições à OpenAI.
+
+### `DTO: Prompt`
+
+   ```bash
+   {
+    "user": "string",
+    "system": "string"
+  }
+   
+  ```  
+
 
 ### Contagem de Tokens
 
@@ -45,7 +63,14 @@ Este projeto implementa uma API que realiza a integração com a OpenAI, utiliza
    git clone https://github.com/francilioalencar/ia-openai-api.git
    
   ```  
-  
+**Variaveis de ambiente**:
+  No diretório raiz do projeto crie um diretório chamdo env e dentro do diretorio env crie o arquivo api.env com as seguintes variáveis:
+   ```bash
+    OPEN_AI_KEY= KEY-OPENAI
+    OPEN_AI_MODEL=MODELO
+   
+  ```  
+
 **Executar projeto em containers Docker**:
   1. Certifique-se ter ter instalado o Docker;
   2. Navegue até o diretorio raiz do projeto;

@@ -32,9 +32,10 @@ build/
 ### VS Code ###
 .vscode/
 
-#docker-compose.yml
-#Dockerfile
+
 env/
-#.devcontainer/
-docker-compose-copy.yml
-Dockerfile-copy
+.devcontainer/
+docker-*
+Dockerfil*
+/container
+

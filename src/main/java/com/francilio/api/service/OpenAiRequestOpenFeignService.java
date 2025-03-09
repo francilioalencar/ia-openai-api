@@ -14,15 +14,15 @@ import com.francilio.api.model.OpenAiCompletionClient;
 
 @Service
 
-public class OpenAiCompletionService {
+public class OpenAiRequestOpenFeignService {
     
-    @Value("${spring.ai.openai.api.model}")
+    @Value("${spring.ai.openai.chat.options.model}")
     private String modelChat;
 
     private OpenAiCompletionClient openAiCompletionClient;
     private TokenService tokenService;
 
-    public OpenAiCompletionService(OpenAiCompletionClient openAiCompletionClient, TokenService tokenService){
+    public OpenAiRequestOpenFeignService(OpenAiCompletionClient openAiCompletionClient, TokenService tokenService){
         this.openAiCompletionClient = openAiCompletionClient;
         this.tokenService =tokenService;
 
@@ -55,8 +55,11 @@ public class OpenAiCompletionService {
 
         ResponseEntity<ChatResponseDto> responseEntity =this.openAiCompletionClient.getMensageOpenAiCompletion(chatRequest);
 
-
-        return responseEntity.getBody().choices().get(0).message().toString();
+        try{
+            return responseEntity.getBody().choices().get(0).message().toString();
+        }catch(Exception e){
+            throw new IllegalArgumentException("O retorno do modelo foi null");
+        }
     }
 
 

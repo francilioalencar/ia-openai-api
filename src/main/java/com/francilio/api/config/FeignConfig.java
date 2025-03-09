@@ -11,16 +11,14 @@ import feign.RequestInterceptor;
 
 public class FeignConfig {
 
-    @Value("${spring.ai.openai.api.key}")
+    @Value("${spring.ai.openai.api-key}")
     private String apiKey;
 
-    
-
     @Bean
-    protected RequestInterceptor requestInterceptor(){
-        return requestInterceptor->{
-                requestInterceptor.header("Content-Type",  "application/json");
-                requestInterceptor.header("Authorization", "Bearer "+apiKey);
+    protected RequestInterceptor requestInterceptor() {
+        return requestInterceptor -> {
+            requestInterceptor.header("Content-Type", "application/json");
+            requestInterceptor.header("Authorization", "Bearer " + apiKey);
         };
     }
 }
